@@ -1,8 +1,10 @@
 **Wallet Security**
+
 None of your wallet information is sent to any server. Wallet Keys are kept on your local machine, everytime you want to use this wallet you must re-use the Keystore JSON,
 Mnemonic Phrase or Private Key for your wallet. This wallet uses ether-js javascript library to decrypt wallets locally, also uses Infura & Etherscan providers for accessing transaction history and balances. Each time you open the wallet, you will need to reinput the Keystore JSON file with password or use the wallet's Private Key and Mnemonic Phrase. To remove confusion, this wallet will not allow you to create a new wallet. If you don't have Ethereum or WILC wallet yet, make one with a secure password at myetherwallet.com. This wallet will not save or move your wallets. Be sure to back up the Keystore JSON file!
 
 **Transactions**
+
 This WILC dApp will allow you to set a custom Gas Price if you need to change the price. By default it is set to 21 gwei. Minimum is 5 gwei. The gas limit on a normal Ether transaction is 12000. The gas limit on sending WILC Tokens is 65000.
 
 **Features**
