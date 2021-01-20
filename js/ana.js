@@ -358,6 +358,7 @@ function SuccessAccess() {
 //------------------------------------------------
 var keyFile;
 function OpenKeystoreFile() {
+
     dialog.showOpenDialog(function (fileNames) {
           keyFile = fileNames[0];
 		  
@@ -389,13 +390,15 @@ function UnlockWalletKeystore() {
  
  
 if (password!=''){
-	
+		try
+            {
                 var buffer = fs.readFileSync(keyFile);
                 let encwallet = JSON.parse(buffer);
                 console.log(encwallet);
                 var json = JSON.stringify(encwallet);
                 console.log(json);
-				
+	
+			
 				ethers.Wallet.fromEncryptedJson(json, password, callback).then(function(wallet) {
 	            myWallet = wallet;
                 SuccessAccess();
@@ -408,12 +411,31 @@ if (password!=''){
                     $("#keystorejsonerror").show();
 			        $("#keystorebtn").html("Open");
 			        document.getElementById('keystorewalletpass').value = '';	
-            
+					document.getElementById("openkeystorebtn").style.display = "inline";
+					document.getElementById("testid").style.display = "none";
+					document.getElementById("keystorebtn").disabled = true;
+					
 			         setTimeout(function(){
                      $("#keystorejsonerror").hide();
-                     },2500);
+                     },3000);
 			
 			         })
+			}
+ 
+            catch {
+            
+                $("#keystorejsonerror").html('<i class="fas fa-exclamation-circle"></i> Invalid Json File, try with correct file')
+                    $("#keystorejsonerror").show();
+			        $("#keystorebtn").html("Open");
+			        document.getElementById('keystorewalletpass').value = '';
+					document.getElementById("openkeystorebtn").style.display = "inline";
+					document.getElementById("testid").style.display = "none";
+					document.getElementById("keystorebtn").disabled = true;
+				setTimeout(function(){
+                     $("#keystorejsonerror").hide();
+                     },3000);
+					 
+            }
 } 
 
 else { 
@@ -453,7 +475,7 @@ function OpenPrivateKey() {
 	
 	else {
       $("#privatekeyerror").show();
-	  $("#privatekeyerror").html('<i class="fas fa-exclamation-circle"></i> Invalid Private Key')
+	  $("#privatekeyerror").html('<i class="fas fa-exclamation-circle"></i> Invalid or Empty Private Key')
   
         setTimeout(function(){
         $("#privatekeyerror").hide();
@@ -686,7 +708,7 @@ function SendToken(callback) {
 		   clearInputField();
 		  return;
         }	
-				
+		
 		myWallet = myWallet.connect(provider); // without this line, myWallet doesn't have a provider object attached to it
 		
         tokenContract = new ethers.Contract(TOKEN_ADDRESS, TOKEN_ABI, myWallet);
@@ -708,7 +730,7 @@ function SendToken(callback) {
 			setTimeout(updateBalance, 30000); //opsiyonel, eğer çabuk değişim görmek istiyorsan kullan
         }); 
 		        setTimeout(LoadTransaction, 60000);
-				
+			
     }
 		        clearInputField();
                 
