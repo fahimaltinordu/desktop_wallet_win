@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title>Wrapped ILCoin (WILC) dApp</title>
+	<title>Wrapped ILCOIN (WILC) dApp</title>
 
     <!-- Bootstrap CSS -->
     <link href="style/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
     </header>
 	
     <div class="createwalletarea">
-		   <button class="btn btncreatewallet" onclick="OpenMyEtherWallet();"><b><i class="fas fa-wallet faa-horizontal animated-hover fa-2x"></i><br>Create Wallet</b></button>
+		   <button class="foure button77" onclick="OpenMyEtherWallet();"><b><i class="fas fa-wallet faa-horizontal animated-hover fa-2x"></i><br>Create Wallet</b></button>
 	</div>
 	
 	
@@ -59,7 +59,7 @@
 		   </div>
 		   
 		   <h5 style=""><b class="shimmer">How would you like to access your wallet?</b></h5>
-		   <span class="label info">It is recommended that don't always use the same provider to not to exceed API limits. Default provider is Etherscan.</span>
+		   <span class="label info">To avoid exceeding API limits, it is recommended to avoid always using the same provider. The default provider is Etherscan</span>
 	</div>
 	
 			
@@ -84,24 +84,24 @@
 		                             
 							 <span id="copyicon" class="fa-stack"  onclick="CopyAddress();" style="color:#05c0a5">
                                <i class="fa fa-square fa-stack-2x"></i>
-                               <i class="fas fa-copy fa-stack-1x fa-inverse" data-toggle="tooltip" data-original-title="Copy address to clipboard"></i>
+                               <i class="fas fa-copy fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="bottom" data-original-title="Copy Address"></i>
                              </span>
 							 
 							 <span id="showicon" class="fa-stack" onclick="ShowPkey();" style="color:#05c0a5">
                                <i class="fa fa-square fa-stack-2x"></i>
-                               <i class="fas fa-eye fa-stack-1x fa-inverse" data-toggle="tooltip" title="Show Private Key"></i>
+                               <i class="fas fa-eye fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="bottom" title="Copy Private Key"></i>
                              </span>   
 							 
 							 <a style="color:#05c0a5; outline: 0;" tabindex="0"  id="showqr" class="fa-stack"  data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="" data-content="" data-address="">
 								<i class="fa fa-square fa-stack-2x"></i>
-								<i class="fas fa-qrcode fa-stack-1x fa-inverse"></i>
+								<i class="fas fa-qrcode fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="bottom" title="Show QR Code"></i>
 							 </a>
 							 <div id="qrcode" style="display: none; width: auto; height: auto; margin: 0px auto; text-align: center; padding: 0px;"></div>
 							 
 							 
 							 <span id="closeaccount" class="fa-stack" onclick="CloseAcc();" style="color:#E9223A">
                                <i class="fa fa-square fa-stack-2x"></i>
-                               <i class="fas fa-times-circle fa-stack-1x fa-inverse" data-toggle="tooltip" title="Change Wallet"></i>
+                               <i class="fas fa-times-circle fa-stack-1x fa-inverse" data-toggle="tooltip" data-placement="bottom" title="Change Wallet"></i>
                              </span>
 						</div>
 							               
@@ -111,8 +111,8 @@
 	<div id="tokensbalance" class=" align-middle hidden" >
 			<i style="color:#05c0a5;float:left;font-size:1em" class="fas fa-hand-holding-usd"></i> 
             <div id="indivbalance">
-				<b id="ethbal"><img src="images/gif.gif" style="width:7%"> </b> <b >ETH</b> <hr>
-				<b id="storjbal"><img src="images/gif.gif" style="width:7%"> </b> <b>WILC</b>
+				<b id="ethbal"><img draggable="false" src="images/gif.gif" style="width:7%"> </b> <b >ETH</b> <hr>
+				<b id="storjbal"><img draggable="false" src="images/gif.gif" style="width:7%"> </b> <b>WILC</b>
 		     </div>   
     </div>
 
@@ -134,36 +134,54 @@
 
     <div class="walletInput">
 
-        <div id="keystoreupload" style="width: 600px; height: 210px; background-color: #2a363f; background-image: url('images/background.png'); border-radius: 40px 20px; padding: 30px;" class="hidden">
+        <div id="keystoreupload" style="background-image: url('images/background.png'); background-repeat: no-repeat;" class="hidden">
             <div style="color:white" class="form-group">
-                <label for="exampleInputEmail1" id="loading" >Keystore JSON File</label>&nbsp;&nbsp;
+                <label for="exampleInputEmail1" id="loading" >Keystore JSON File <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right" data-original-title="This file simply holds your encrypted private key within it, which is why you have to use your chosen password to unlock your wallet via this method. Enter the password used to encrypt the file when the wallet was created."></i></label>&nbsp;&nbsp;
                 <button class="foure button" id="openkeystorebtn" onclick="OpenKeystoreFile();">Open Keystore File</button>
 				<p class="test" id="testid"></p>
 				<!-- <p class="errorInfo text-info pull-right" id="keystoredetail">$asdasdad</p> -->
             </div>
             <div style="color:white" class="form-group">
                 <label for="walletpass">Wallet Password</label>
-                <input type="password" class="form-control" id="keystorewalletpass" placeholder="Ethereum Wallet Keystore Password" required>
+                <!-- <input type="password" class="form-control" id="keystorewalletpass" placeholder="Ethereum Wallet Keystore Password" required> -->
+				<div class="input-group" id="show_hide_password" style="display:table">
+					  <input style="width:90%" type="password" class="form-control" id="keystorewalletpass" placeholder="Ethereum Wallet Keystore Password" required>
+					  <div style="font-size:19px" class="input-group-addon">
+						<a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+					  </div>
+				 </div>
             </div>
             <button type="submit" class="foure button" id="keystorebtn" onclick="UnlockWalletKeystore();" disabled>Open</button>&nbsp; 
 			<button class="foure button" onClick="backbutton();">Back</button>
 			<p class="errorInfo text-info pull-right" id="keystorejsonerror"></p>
 		</div>
 
-        <div id="privatekey" style="width: 600px; height: 190px; background-color: #2a363f; background-image: url('images/background.png'); border-radius: 40px 20px; padding: 40px;" class="hidden">
+        <div id="privatekey" style="background-image: url('images/background.png'); background-repeat: no-repeat; " class="hidden">
             <div style="color:white" class="form-group">
-                <label for="walletpass">Wallet Private Key</label>
-                <input type="password" class="form-control" id="privatepass" placeholder="Ethereum Private Key" required>
+                <label for="walletpass">Wallet Private Key <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right" data-original-title="Please be sure that you are carefully and accurately typing your private key. A single wrong character will open a different wallet than is yours. Be sure there is not a space at the beginning or end of your private key. For reference private key looks like afdfd9c3d2095ef696594f6cedcae59e72dcd697...."></i></label>
+                <!-- <input type="password" class="form-control" id="privatepass" placeholder="a6de9563d3db157ed9926a993559dc177be74a23fd88ff5776ff0505d21fed2b" required> -->
+				<div class="input-group" id="show_hide_password" style="display:table">
+					  <input style="width:90%" type="password" class="form-control" id="privatepass" placeholder="a6de9563d3db157ed9926a993559dc177be74a23fd88ff577" required>
+					  <div style="font-size:19px" class="input-group-addon">
+						<a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+					  </div>
+				 </div>
             </div>
             <button type="submit" class="foure button" onclick="OpenPrivateKey();">Open</button>&nbsp; 
 			<button class="foure button" onClick="backbutton();">Back</button>
 			<p class="errorInfo text-info pull-right" id="privatekeyerror"></p>
 		</div>
 		
-		<div id="mnemonicupload" style="width: 600px; height: 190px; background-color: #2a363f; background-image: url('images/background.png'); border-radius: 40px 20px; padding: 40px; " class="hidden">
+		<div id="mnemonicupload" style="background-image: url('images/background.png'); background-repeat: no-repeat; " class="hidden">
             <div style="color:white" class="form-group">
-                <label for="walletpass">Mnemonic Phrase</label>
-                <input type="password" class="form-control" id="mnemonicwords" placeholder="Please type in your mnemonic phrase" required>
+                <label for="walletpass">Mnemonic Phrase <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="right" data-original-title="Mnemonic phrases are ordered lists of 12 - 24 words which bring you to specific and unique wallet addresses. 12-word Mnemonic Phrase Example: jealous expect hundred young unlock disagree major siren surge acoustic machine catalog. Separate words by spaces."></i></label>
+                <!-- <input type="password" class="form-control" id="mnemonicwords" placeholder="indoor dish desk flag debris..." required> -->
+				 <div class="input-group" id="show_hide_password" style="display:table">
+					  <input style="width:90%" type="password" class="form-control" id="mnemonicwords" placeholder="indoor dish desk flag debris..." required>
+					  <div style="font-size:19px" class="input-group-addon">
+						<a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+					  </div>
+				 </div>
             </div>
             <button type="submit" class="foure button" onclick="UnlockMnemonic();">Open</button>&nbsp; 
 			<button class="foure button" onClick="backbutton();">Back</button>
@@ -187,7 +205,7 @@
                 <div class="modal-header" style="text-align:center;background-color: #2a363f;color: #fff; border-radius:0px;">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearInputField()"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title" id="myModalLabel"><b>Send Ethereum</b></h4><br>
-					<img id="logosend" src="images/sendlogoeth.png" width="90" >
+					<img draggable="false" id="logosend" src="images/sendlogoeth.png" width="90" >
                 </div>
 				
                 <div class="modal-body">
@@ -210,7 +228,7 @@
                     <div class="form-group">
 						<div class="input-group">
 						    <span class="input-group-addon"><b>Amount to send [ETH]</b></span>
-                            <input style="margin-bottom: 20px;" type="number" min="0" max="25000" step="0.00000001" id="send_ether_amount" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0.0" onpaste="return false;" onkeypress="return isNumberKey(event,this);" onchange="CheckETHAvailable();" onkeyup="CheckETHAvailable();">  
+                            <input style="margin-bottom: 20px;" type="number"  min="0" max="25000" step="0.00000001" id="send_ether_amount" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="0.0" onpaste="return false;" onkeypress="return isNumberKey(event,this);" onchange="CheckETHAvailable();" onkeyup="CheckETHAvailable();">  
                         </div>
                     </div>
 					
@@ -237,8 +255,8 @@
             <div class="modal-content">
                 <div class="modal-header" style="text-align:center; background-color: #2a363f; color: #fff;  border-radius:0px">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearInputField()"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel"><b>Send Wrapped ILCoin</b></h4><br>
-					<img id="logosend" src="images/sendlogowilc.png" width="90" >
+					<h4 class="modal-title" id="myModalLabel"><b>Send Wrapped ILCOIN</b></h4><br>
+					<img draggable="false" id="logosend" src="images/sendlogowilc.png" width="90" >
                 </div>
 				
                 <div class="modal-body">
@@ -275,7 +293,7 @@
                 </div>
                 
 				<div class="modal-footer" style="position: fixed;bottom: 0;width: 100%;">
-                    <button type="button" id="sendtokenbutton" class="btn btn-primary" onclick="SendToken();" disabled><b>Send Wrapped ILCoin</b></button>
+                    <button type="button" id="sendtokenbutton" class="btn btn-primary" onclick="SendToken();" disabled><b>Send Wrapped ILCOIN</b></button>
                 </div>
             </div>
         </div>
@@ -289,11 +307,11 @@
                 
 				<div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel"><i class="fas fa-info-circle "></i><b>   Wrapped ILCoin (WILC) dApp</b></h4>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fas fa-info-circle "></i><b>   Wrapped ILCOIN (WILC) dApp</b></h4>
                 </div>
 				
                 <div class="modal-body">
-				  <p>A simple Ethereum Wallet based on <b>Wrapped ILCoin (WILC)</b> ERC20 Token. Send and Receive ETH and WILC with ease and security. Ethereum wallets are decrypted and raw transactions are signed locally. Raw Transactions are sent directly to etherScan.io & infura.io. This open source dApp is created for WILC community. Wallet Private Keys are kept on your local machine, everytime you want to use this wallet you must re-use the Keystore JSON or Private Key for your wallet. <br><br> This wallet is for the WILC community to make life 25% easier for us token holders. Make your WILC Token experience decentralized! None of your wallet information is sent to any server. Wallet Keys are kept on your local machine, everytime you want to use this wallet you must re-use the Keystore JSON, Mnemonic Phrase or Private Key for your wallet. This wallet uses ether-js javascript library  to decrypt wallets locally, also uses Infura & Etherscan providers for accessing transaction history and balances. Each time you open the wallet, you will need to reinput the Keystore JSON file with password or use the wallet's Private Key and Mnemonic Phrase. To remove confusion, this wallet will not allow you to create a new wallet. If you don't have Ethereum or WILC wallet yet, make one with a secure password at myetherwallet.com. This wallet will not save or move your wallets. Be sure to back up the Keystore JSON file! <b style="color:#05c0a5">It is recommended that don't always use the same provider to not to exceed API limits. Default provider is Etherscan.</b></p>
+				  <p>A simple Ethereum Wallet based on <b>Wrapped ILCOIN (WILC)</b> ERC20 Token. Send and receive ETH and WILC with ease and security. Ethereum wallets are decrypted and raw transactions are signed locally. Raw transactions are sent directly to etherScan.io & infura.io. This open source dApp is created for WILC community. Wallet Private Keys are kept on your local machine, everytime you want to use this wallet you must re-use the Keystore JSON or Private Key for your wallet. <br><br> This wallet is for the WILC community to make life 25% easier for us token holders. Make your WILC Token experience decentralized! None of your wallet information is sent to any server. Wallet keys are kept on your local machine. Every time you want to use this wallet, you must re-use the Keystore JSON, Mnemonic Phrase or Private Key for your wallet. This wallet uses ether-js javascript library  to decrypt wallets locally, also uses Infura & Etherscan providers for accessing transaction history and balances. Each time you open the wallet, you will need to reinput the Keystore JSON file with password or use the wallet's Private Key and Mnemonic Phrase. To remove confusion, this wallet will not allow you to create a new wallet. If you don't have Ethereum or WILC wallet yet, make one with a secure password at myetherwallet.com. This wallet will not save or move your wallets. Be sure to back up the Keystore JSON file!</p>
                 </div>
 				
                 <div class="modal-footer">
@@ -317,7 +335,7 @@
 				
                 <div class="modal-body" style="text-align:center">
 				  <!-- <i class="fas fa-check-circle faa-flash animated fa-7x" style="color: #05c0a5; padding-bottom:15px;"></i> -->
-                  <img src="images/tenor.gif"  width="120">
+                  <img draggable="false" src="images/tenor.gif"  width="120">
 				  
                     <p>From Address: <b id="txfromaddress">0x208e02303fe29be3698732e92ca32b88d80a2d36</b></p>
                     <p>To Address: <b id="txtoaddress">0xa3ddc09b5e49d654a43e161cae3f865261cabd23</b></p>
@@ -380,7 +398,7 @@
 <div class="nodata hidden">
     <h2>No WILC Transactions!</h2>
     <p>You don't have any pending or past transactions yet. </p>
-    <img src="images/nodata.png" height="90px">
+    <img draggable="false" src="images/nodata.png" height="90px">
 </div>   
 
 
@@ -417,9 +435,9 @@
 	    		
         <div class="container-md">
 		   
-		   <p class="brand">Wrapped ILCoin Decentralized App</p>
+		   <p class="brand">Wrapped ILCOIN Decentralized App</p>
 	       <span class="about"  data-toggle="modal" data-target="#aboutmodalerisim">About v0.0.1</span>
-	       <img src='images/footer.png' width='100%' height='120px'>	   
+	       <img draggable="false" src='images/footer.png' width='100%' height='120px'>	   
 		   <span id="status">checking network status  <i class="fas fa-spinner faa-spin animated"></i></span>
 		</div>
     </footer>
@@ -439,7 +457,7 @@
 	
 </script>
 
-				
+			
 
 
 <script type="text/javascript">
@@ -485,7 +503,7 @@ function isNumberKey(evt, element) {
 </script>
 <script>
     $.sessionTimeout({
-	    message: 'After a given period of inactivity or being in the background, <b>you will automatically be logged out of your wallet</b>. This is to help ensure your funds and the keys more safe and secure, especially if you are logging in on a shared computer or network. By default, auto logout is set to 1 minutes. <b>You can continue to your wallet by pressing any key or moving the mouse.</b>',
+	    message: 'After a given period of inactivity or being in the background, <b>you will automatically be logged out of your wallet</b>. This is to help ensure your funds and the keys are safe and secure; especially if you are logging in on a shared computer or network. By default, auto logout is set to 1 minute. <b>You can continue to your wallet by pressing any key or moving the mouse.</b>',
         keepAliveUrl: 'index.html',
 		logoutUrl: 'index.html',
         redirUrl: 'index.html',
@@ -500,10 +518,24 @@ function isNumberKey(evt, element) {
 
 <script>
      $(document).ready(function(){	 
-     $('[data-toggle="tooltip"]').tooltip({
-        placement : 'bottom'
-     });
+     $('[data-toggle="tooltip"]').tooltip();
 	 
+		$("#show_hide_password a").on('click', function(event) {
+			event.preventDefault();
+			if($('#show_hide_password input').attr("type") == "text"){
+				$('#show_hide_password input').attr('type', 'password');
+				$('#show_hide_password i').addClass( "fa-eye-slash" );
+				$('#show_hide_password i').removeClass( "fa-eye" );
+			}else if($('#show_hide_password input').attr("type") == "password"){
+				$('#show_hide_password input').attr('type', 'text');
+				$('#show_hide_password i').removeClass( "fa-eye-slash" );
+				$('#show_hide_password i').addClass( "fa-eye" );
+			}
+		});
+	
+		$("#send_ether_amount, #send_amount_token").change(function() {
+            $(this).val(parseFloat($(this).val()).toFixed(8));
+        });
 	
      });
 	 
