@@ -39,7 +39,7 @@ function createWindow () {
 
   mainWindow.setMenuBarVisibility(false) 
   mainWindow.setResizable(false)
-  mainWindow.setFullScreenable(true)
+  mainWindow.setFullScreenable(false)
   mainWindow.center()
 
 
@@ -52,7 +52,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
