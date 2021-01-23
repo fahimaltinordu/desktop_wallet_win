@@ -14,7 +14,7 @@ var myWallet;
 
 var tokenBalance = 0;
 var ethBalance = 0;
-var version = "0.0.1";
+var version = "0.1.0";
 
 
 // Connecting to Infura provider (working)
@@ -127,7 +127,6 @@ function backbutton() {
     document.getElementById("testid").style.display = "none";
     $("#keystorebtn").html("Open");
     document.getElementById("keystorebtn").disabled = true;
-
 }
 
 function UseKeystore() {
