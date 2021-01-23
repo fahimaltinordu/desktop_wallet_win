@@ -1,0 +1,45 @@
+/* General */
+
+.progress,
+.iew_form__create_new_wallet .alert,
+.iew_form__unlock_wallet .alert,
+.iew__view_main {
+	display: none;
+}
+
+#iew_button__upload_json {
+	overflow: hidden;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+	.modal-dialog {
+    	max-width: 800px;
+    	margin: 30px auto;
+	}
+}
+
+
+
+/* New Wallet */
+
+.iew_form__create_new_wallet_done {
+	display: none;
+}
+
+
+
+/* Send Ether & Tokens */
+
+.iew_form__send_ether_tokens {
+	display: none;
+}
+
+.iew_form__send_ether_tokens.generate .info {
+	font-size: 13px;
+    background: #27a1b8;
+    color: #fff;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 0px 0px 16px 0px;
+}
