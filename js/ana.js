@@ -14,7 +14,7 @@ var myWallet;
 
 var tokenBalance = 0;
 var ethBalance = 0;
-var version = "0.1.0";
+var version = "0.1.1";
 
 
 // Connecting to Infura provider (working)
@@ -31,19 +31,19 @@ var version = "0.1.0";
 
 
 					
-					let provider = new ethers.providers.EtherscanProvider("ropsten", "R7R3Z7MMTMQC7J7H8NCNDX2UAAUPP9RU2X");
+					let provider = new ethers.providers.EtherscanProvider("homestead", "R7R3Z7MMTMQC7J7H8NCNDX2UAAUPP9RU2X");
 
 
 					$('#providerselector').on('change',function(){
 						
 						if ( $(this).val()==="etherscan") {
-							provider = new ethers.providers.EtherscanProvider("ropsten", "R7R3Z7MMTMQC7J7H8NCNDX2UAAUPP9RU2X");
+							provider = new ethers.providers.EtherscanProvider("homestead", "R7R3Z7MMTMQC7J7H8NCNDX2UAAUPP9RU2X");
 						} else if ( $(this).val()==="infura") {
-							provider = new ethers.providers.InfuraProvider("ropsten", "3a0bde1254514ca3a4f536ecdd311913"); 
+							provider = new ethers.providers.InfuraProvider("homestead", "3a0bde1254514ca3a4f536ecdd311913"); 
 						} else if ( $(this).val()==="infura2") {
-							provider = new ethers.providers.InfuraProvider("ropsten", "ec6d2493e2004b1f9723f2d11ddf356a"); 
+							provider = new ethers.providers.InfuraProvider("homestead", "ec6d2493e2004b1f9723f2d11ddf356a"); 
 						}else if ( $(this).val()==="etherscan2") {
-							provider = new ethers.providers.EtherscanProvider("ropsten", "ZKD7XVVFSWG2GQ7AV2KABV8JXMIDWS8P3B"); 
+							provider = new ethers.providers.EtherscanProvider("homestead", "ZKD7XVVFSWG2GQ7AV2KABV8JXMIDWS8P3B"); 
 						}
                        window.provider = provider;
 
@@ -53,8 +53,8 @@ var version = "0.1.0";
 var tokenContract;
 
 
-// var TOKEN_ADDRESS = '0xc98a910ede52e7d5308525845f19e17470dbccf7' //wilc mainnet contract address
-var TOKEN_ADDRESS = '0xf4f690befd90286964d6e85713272d5e692801e0' //wilc ropsten contract address
+var TOKEN_ADDRESS = '0xc98a910ede52e7d5308525845f19e17470dbccf7' //wilc mainnet contract address
+// var TOKEN_ADDRESS = '0xf4f690befd90286964d6e85713272d5e692801e0' //wilc ropsten contract address
 
 
 const TOKEN_ABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"burnAmount","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"value","type":"uint256"}],"name":"upgrade","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"upgradeAgent","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"upgradeMaster","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getUpgradeState","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"canUpgrade","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalUpgraded","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"agent","type":"address"}],"name":"setUpgradeAgent","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"isToken","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"BURN_ADDRESS","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"master","type":"address"}],"name":"setUpgradeMaster","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_owner","type":"address"},{"name":"_name","type":"string"},{"name":"_symbol","type":"string"},{"name":"_totalSupply","type":"uint256"},{"name":"_decimals","type":"uint256"}],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Upgrade","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"agent","type":"address"}],"name":"UpgradeAgentSet","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"burner","type":"address"},{"indexed":false,"name":"burnedAmount","type":"uint256"}],"name":"Burned","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"}];
@@ -64,7 +64,7 @@ tokenContract = new ethers.Contract(TOKEN_ADDRESS, TOKEN_ABI, provider);
 
 
 function OpenEtherScan(transactionHash) {
-  shell.openExternal('https://ropsten.etherscan.io/tx/'+transactionHash)
+  shell.openExternal('https://etherscan.io/tx/'+transactionHash)
 }
 
 function OpenGithubRepo() {
@@ -281,7 +281,7 @@ function LoadTransaction () {
 	
 	var apiadress = myWallet.address;	
 	var apicontract = TOKEN_ADDRESS;
-	var apitxlist = 'https://api-ropsten.etherscan.io/api?module=account&action=tokentx&contractaddress='+apicontract+'&address='+apiadress+'&page=1&offset=20&sort=desc&apikey=R7R3Z7MMTMQC7J7H8NCNDX2UAAUPP9RU2X';			
+	var apitxlist = 'https://api.etherscan.io/api?module=account&action=tokentx&contractaddress='+apicontract+'&address='+apiadress+'&page=1&offset=20&sort=desc&apikey=R7R3Z7MMTMQC7J7H8NCNDX2UAAUPP9RU2X';			
 			
 
 	// setInterval(function() {
